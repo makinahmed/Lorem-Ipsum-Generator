@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
+import text from './Data';
 import './App.css';
 
 function App() {
+
+  const [index, setIndex] = useState(0)
+  const [texts, setText] = useState('')
+
+  const onChangeHandler = (e) => {
+    const val = e.target.value
+    setIndex(val)
+  }
+
+  const btnHandler = () => {
+    setText( text.slice(0,index*20))
+    
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <h2>TIRED OF BORING LOREM IPSUM?</h2>
+      <p>Paragraphs : </p>
+      <input type="number" onChange={onChangeHandler} value={index}/>
+      <button onClick={btnHandler}>GENERATE</button>
+      <br />
+      <p className='text'>{texts}</p>
     </div>
   );
 }
